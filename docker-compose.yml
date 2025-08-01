@@ -39,12 +39,11 @@ services:
     container_name: pve-exporter
     ports:
       - "9221:9221"
-    environment:
-      PVE_TOKEN_NAME: 'grafana!mytoken'
-      PVE_TOKEN_VALUE: 123                    # Change to your API token
-      PVE_VERIFY_SSL: 'false'
-      PVE_HOST: https://localhost:8006        # Change it to your Proxmox ip
-    command: --no-config
+    volumes:
+      - ./pve/pve.yml:/etc/pve_exporter/pve.yml:ro
+    command:
+      - "--config.file=/etc/pve_exporter/pve.yml"
+    restart: unless-stopped
 
 
 volumes:

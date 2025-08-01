@@ -1,0 +1,5 @@
+default:
+  user: 'grafana@pam!mytoken'
+  password: '123'                 # Change to your API token
+  verify_ssl: false
+  host: 'https://localhost:8006'  # Change it to your Proxmox ip
