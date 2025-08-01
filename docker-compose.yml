@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   prometheus:
     image: prom/prometheus:latest
@@ -35,6 +33,19 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
       - grafana-storage:/var/lib/grafana
+
+  pve-exporter:
+    image: prompve/prometheus-pve-exporter
+    container_name: pve-exporter
+    ports:
+      - "9221:9221"
+    environment:
+      PVE_TOKEN_NAME: 'grafana!mytoken'
+      PVE_TOKEN_VALUE: 123                    # Change to your API token
+      PVE_VERIFY_SSL: 'false'
+      PVE_HOST: https://localhost:8006        # Change it to your Proxmox ip
+    command: --no-config
+
 
 volumes:
   grafana-storage:

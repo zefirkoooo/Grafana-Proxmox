@@ -4,8 +4,8 @@ global:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['localhost:9090']
+      - targets: ['localhost:9090'] # Change it to your Proxmox ip 
 
-  # - job_name: 'proxmox-api'
-  #   static_configs:
-  #     - targets: ['10.0.10.201:9221']
+  - job_name: 'proxmox-api'
+    static_configs:
+      - targets: [ 'pve-exporter:9221' ]
