@@ -8,4 +8,4 @@ scrape_configs:
 
   - job_name: 'proxmox-api'
     static_configs:
-      - targets: [ 'pve-exporter:9221' ]
+      - targets: [ 'localhost :9221' ] # Change it to your Proxmox ip 
